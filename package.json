@@ -1,0 +1,43 @@
+{
+  "name": "dsh-leike-pet",
+  "version": "0.2.0",
+  "description": "Pixel-art Little Red Riding Hood pet for the DeepSeek Harness session window: transparent and always on top, walks along the composer, blinks, looks around, turns its head toward the cursor, sleeps on double-click, and scales 2×–7× from a right-click panel.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "desktop-pet",
+    "pixel-art",
+    "pet",
+    "widget"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "./icon.png",
+  "files": [
+    "lib",
+    "assets",
+    "icon.png",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zyr147258/dsh-leike-pet.git"
+  },
+  "homepage": "https://github.com/Zyr147258/dsh-leike-pet#readme",
+  "bugs": {
+    "url": "https://github.com/Zyr147258/dsh-leike-pet/issues"
+  },
+  "author": "Zyr147258",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dsh-leike-pet · 预览</title>
+<style>
+  :root{
+    --bg:#ffffff; --sidebar:#f4f4f7; --line:#e6e6ec; --text:#23222a; --sub:#6d6d7a;
+    --card:#ffffff; --card-line:#e3e3ea; --user:#eef2ff;
+  }
+  html[data-theme="dark"]{
+    --bg:#1b1a20; --sidebar:#151419; --line:#2b2a33; --text:#e9e8ef; --sub:#9b99a7;
+    --card:#23222a; --card-line:#33323c; --user:#2a2e3f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    width:1280px;height:680px;overflow:hidden;
+    background:var(--bg);color:var(--text);
+    font:14px/1.55 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif;
+  }
+  .frame{display:grid;grid-template-columns:248px minmax(0,1fr);grid-template-rows:100%;height:680px}
+  .sidebar{background:var(--sidebar);border-right:1px solid var(--line);padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+  .brand{font-weight:650;letter-spacing:.02em;padding:6px 8px 14px;color:var(--text)}
+  .brand small{display:block;font-weight:400;color:var(--sub);font-size:11px;letter-spacing:.06em}
+  .side-item{padding:7px 9px;border-radius:8px;color:var(--sub);font-size:13px}
+  .side-item.active{background:#3964fe1f;color:var(--text)}
+  .center{display:flex;flex-direction:column;min-width:0;position:relative}
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);flex:none}
+  header h1{font-size:14px;font-weight:600;margin:0;color:var(--text)}
+  header .crumb{color:var(--sub);font-size:12px}
+  [data-conversation-content]{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+  [data-conversation-scroll]{flex:1;min-height:0;overflow:auto;padding:26px 26px 8px}
+  .msg{max-width:720px;margin:0 auto 18px;display:flex;gap:10px}
+  .msg .avatar{width:26px;height:26px;border-radius:8px;flex:none;background:#3964fe22;border:1px solid var(--line)}
+  .msg .body{min-width:0;flex:1}
+  .msg .who{font-size:12px;color:var(--sub);margin-bottom:5px}
+  .msg .text{background:var(--card);border:1px solid var(--card-line);border-radius:12px;padding:10px 13px;color:var(--text)}
+  .msg.user .text{background:var(--user);border-color:transparent}
+  [data-composer-seat]{
+    position:absolute;left:0;right:0;bottom:0;padding:8px 26px 18px;
+    background:linear-gradient(180deg,rgba(0,0,0,0),var(--bg) 42px);
+  }
+  .composer{
+    max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--card-line);
+    border-radius:16px;padding:12px 14px 8px;box-shadow:0 6px 18px rgba(0,0,0,.06);
+  }
+  .composer .ph{color:var(--sub);font-size:13px;min-height:24px}
+  .composer .bar{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-top:6px}
+  .composer .pill{font-size:12px;color:var(--sub);border:1px solid var(--card-line);border-radius:999px;padding:2px 9px}
+  #test{position:fixed;left:264px;top:40px;z-index:10;max-width:960px;font:600 13px/1.55 ui-monospace,Consolas,monospace;color:#7ee2a8;white-space:pre-wrap;background:rgba(10,12,16,.88);border:1px solid rgba(126,226,168,.25);border-radius:10px;padding:8px 12px}
+  #dbg{position:fixed;left:264px;top:2px;z-index:9;max-width:960px;
+       font:11px/1.45 ui-monospace,Consolas,monospace;color:#8a8a99;white-space:pre-wrap}
+  /* 截图用：把过渡/循环动画冻结，避免无头浏览器抓到中间帧 */
+  body.freeze #dsh-pet-root .dsh-pet-actor{opacity:1!important;transition:none!important}
+  body.freeze #dsh-pet-root .dsh-pet-zzz{animation:none!important;opacity:1!important;transform:none!important}
+  body.freeze #dsh-pet-root .dsh-pet-img{animation:none!important}
+  body.nodebug #dbg{display:none}
+</style>
+</head>
+<body>
+<div class="frame">
+  <aside class="sidebar">
+    <div class="brand">DeepSeek Harness<small>DESKTOP</small></div>
+    <div class="side-item active">会话 · 桌宠插件开发</div>
+    <div class="side-item">会话 · 精灵图检查</div>
+    <div class="side-item">插件</div>
+    <div class="side-item">设置</div>
+  </aside>
+  <div class="center">
+    <header>
+      <h1>桌宠插件开发 <span class="crumb">/ default-workspace</span></h1>
+      <span class="crumb">deepseek-flash</span>
+    </header>
+    <div data-conversation-content data-conversation-region="chat">
+      <div data-conversation-scroll>
+        <div class="msg user">
+          <div class="avatar"></div>
+          <div class="body"><div class="who">你</div><div class="text">帮我做一个桌宠插件，角色是小红帽蕾克。</div></div>
+        </div>
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="body"><div class="who">DeepSeek</div><div class="text">好——透明背景、无边框、始终置顶，在会话窗口里左右走动，鼠标靠近会转头看你，双击原地休息。</div></div>
+        </div>
+        <div class="msg user">
+          <div class="avatar"></div>
+          <div class="body"><div class="who">你</div><div class="text">顺手把走动速度调慢一点。</div></div>
+        </div>
+        <div class="msg">
+          <div class="avatar"></div>
+          <div class="body"><div class="who">DeepSeek</div><div class="text">已经改成慢悠悠的 26px/s，走一会儿还会自己停一下发呆。</div></div>
+        </div>
+      </div>
+      <div data-composer-seat data-conversation-region="composer">
+        <div class="composer">
+          <div class="ph">给 DeepSeek 发送消息…</div>
+          <div class="bar"><span class="pill">deepseek-flash</span><span class="pill">发送</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="dbg"></div>
+<div id="test"></div>
+<script>
+  var params = location.search
+  if (params.indexOf('theme=dark') !== -1) document.documentElement.dataset.theme = 'dark'
+  if (params.indexOf('freeze=1') !== -1) document.body.classList.add('freeze')
+  if (params.indexOf('nodebug=1') !== -1) document.body.classList.add('nodebug')
+  // 模拟右下角小鲸鱼挂件：用它的真实全局 __dshWhaleRoot 验证桌宠会避让
+  if (params.indexOf('whale=1') !== -1) {
+    var whaleEl = document.createElement('div')
+    whaleEl.id = 'fake-whale'
+    whaleEl.style.cssText = 'position:fixed;right:0;bottom:0;width:224px;height:224px;z-index:9999;' +
+      'pointer-events:none;border-radius:50% 0 0 0;background:radial-gradient(circle at 62% 58%,#8aa6f5 0,#4c6bd8 48%,rgba(76,107,216,0) 72%)'
+    document.body.appendChild(whaleEl)
+    window.__dshWhaleRoot = whaleEl
+  }
+  window.__DSH_PET_BASE__ = '../assets/'
+</script>
+<script src="../lib/pet.js"></script>
+<script>
+  function report() {
+    var api = window.__DSH_PET__
+    if (!api) return
+    var p = api.position
+    var conv = document.querySelector('[data-conversation-content]')
+    var seat = document.querySelector('[data-composer-seat]')
+    var sp = document.querySelector('.dsh-pet-actor')
+    var cr = conv && conv.getBoundingClientRect()
+    var sr = seat && seat.getBoundingClientRect()
+    var spr = sp && sp.getBoundingClientRect()
+    document.getElementById('dbg').textContent = JSON.stringify({
+      state: api.state, pose: api.pose,
+      x: Math.round(p.x), floor: Math.round(p.floor),
+      minX: Math.round(p.minX), maxX: Math.round(p.maxX),
+      conv: cr && [Math.round(cr.top), Math.round(cr.bottom)],
+      seat: sr && [Math.round(sr.top), Math.round(sr.bottom)],
+      sprite: spr && [Math.round(spr.top), Math.round(spr.bottom)],
+      inner: [innerWidth, innerHeight],
+      htmlH: Math.round(document.documentElement.getBoundingClientRect().height),
+      t: Math.round(performance.now())
+    })
+  }
+  document.addEventListener('dsh-pet-ready', function () {
+    var api = window.__DSH_PET__
+    if (!api) return
+    var p = api.position
+    var mode = location.hash.replace('#', '')
+    if (mode === 'rest') api.rest(true)
+    else if (mode === 'alert-left') api.face(p.x - 150, p.floor - 96)
+    else if (mode === 'alert-right') api.face(p.x + 150, p.floor - 96)
+    else if (mode === 'alert-front') api.face(p.x, p.floor - 170)
+    else if (mode === 'panel') api.openPanel()
+    else if (mode === 'big') api.setScale(6)
+    if (params.indexOf('selftest=1') !== -1) { selftest(api); return }
+    report()
+    setTimeout(report, 700)
+    setTimeout(report, 1500)
+    setTimeout(report, 2600)
+  })
+
+  function log(line) {
+    var el = document.getElementById('test')
+    el.textContent = (el.textContent ? el.textContent + ' | ' : 'SELFTEST ') + line
+  }
+
+  function advance(api, ms, stepMs) {
+    var left = ms
+    while (left > 0) { api.step(stepMs || 16); left -= (stepMs || 16) }
+  }
+
+  function selftest(api) {
+    var img = document.querySelector('.dsh-pet-img')
+    var results = []
+    function check(name, ok, extra) {
+      var line = name + '=' + (ok ? 'PASS' : 'FAIL') + (extra ? '(' + extra + ')' : '')
+      results.push(line)
+      log(line)
+      var panel = document.getElementById('test')
+      var allOk = results.every(function (r) { return r.indexOf('FAIL') === -1 })
+      panel.style.color = allOk ? '#1a7f37' : '#b42318'
+    }
+
+    advance(api, 1200)
+    check('walk', api.state === 'walk' && (api.pose === 'left' || api.pose === 'right'), api.state + '/' + api.pose)
+    var p1 = api.position
+    advance(api, 1000)
+    var p2 = api.position
+    check('moving', Math.abs(p2.x - p1.x) > 10, 'dx=' + Math.round(p2.x - p1.x))
+
+    var p = api.position
+    window.dispatchEvent(new PointerEvent('pointermove', { clientX: p.x - 150, clientY: p.floor - 96, bubbles: true }))
+    advance(api, 100)
+    check('alert-left', api.state === 'alert' && api.pose === 'left', api.state + '/' + api.pose)
+
+    window.dispatchEvent(new PointerEvent('pointermove', { clientX: p.x + 150, clientY: p.floor - 96, bubbles: true }))
+    advance(api, 100)
+    check('alert-right', api.state === 'alert' && api.pose === 'right', api.state + '/' + api.pose)
+
+    window.dispatchEvent(new PointerEvent('pointermove', { clientX: 4, clientY: 4, bubbles: true }))
+    advance(api, 100)
+    check('resume', api.state === 'walk', api.state)
+
+    img.dispatchEvent(new MouseEvent('dblclick', { bubbles: true, cancelable: true }))
+    advance(api, 200)
+    var z = document.querySelector('.dsh-pet-zzz')
+    var visible = z && getComputedStyle(z).display !== 'none'
+    check('rest', api.resting === true && api.state === 'rest' && !!visible, 'resting=' + api.resting + ' zzz=' + visible)
+    var pr = api.position
+    advance(api, 1000)
+    check('rest-still', Math.abs(api.position.x - pr.x) < 0.5, 'dx=' + (api.position.x - pr.x).toFixed(2))
+
+    img.dispatchEvent(new MouseEvent('dblclick', { bubbles: true, cancelable: true }))
+    advance(api, 200)
+    check('unrest', api.resting === false && api.state === 'walk', 'resting=' + api.resting + ' state=' + api.state)
+
+    // 大小：2×~7×，整数倍放大，边界随之收窄
+    api.setScale(6)
+    advance(api, 100)
+    var big = api.position
+    check('scale-big', big.w === 162 && big.x >= big.minX - 0.5 && big.x <= big.maxX + 0.5,
+      'w=' + big.w + ' minX=' + Math.round(big.minX) + ' maxX=' + Math.round(big.maxX))
+    api.setScale(3)
+    advance(api, 100)
+    check('scale-small', api.position.w === 81, 'w=' + api.position.w)
+    api.setScale(4)
+    advance(api, 100)
+
+    // 右键面板
+    api.openPanel()
+    var panelEl = document.querySelector('.dsh-pet-panel')
+    var panelShown = panelEl && !panelEl.hidden && api.panelOpen
+    api.closePanel()
+    var panelHidden = panelEl && panelEl.hidden && !api.panelOpen
+    check('panel', !!panelShown && !!panelHidden, 'open=' + !!panelShown + ' closed=' + !!panelHidden)
+
+    // 走到边界会掉头待机：把 x 推到最右
+    for (var i = 0; i < 400; i++) api.step(50)
+    check('bounds', api.state === 'walk' || api.state === 'idle', api.state)
+
+    // 装了鲸鱼挂件时：散步范围要让开它，不能压在它头上
+    var whale = document.getElementById('fake-whale')
+    if (whale) {
+      var wr = whale.getBoundingClientRect()
+      var pp = api.position
+      check('avoid-whale', pp.maxX <= wr.left - pp.w / 2 - 6, 'maxX=' + Math.round(pp.maxX) + ' whaleLeft=' + Math.round(wr.left))
+    }
+
+    log('DONE')
+  }
+</script>
+</body>
+</html>
